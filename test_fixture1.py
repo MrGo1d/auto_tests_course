@@ -1,0 +1,54 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
+link = "http://selenium1py.pythonanywhere.com/"
+
+
+class TestMainPage1():
+
+    @classmethod
+    def setup_class(self):
+        print(f"\nstart browser for test suite {self.__name__}..")
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        self.browser = webdriver.Chrome(options=chrome_options)
+
+    @classmethod
+    def teardown_class(self):
+        print(f"quit browser for test suite {self.__name__}..")
+        self.browser.quit()
+
+    def test_guest_should_see_login_link(self):
+        self.browser.get(link)
+        self.browser.find_element(By.CSS_SELECTOR, "#login_link")
+
+    def test_guest_should_see_basket_link_on_the_main_page(self):
+        self.browser.get(link)
+        self.browser.find_element(By.CSS_SELECTOR, ".basket-mini .btn-group > a")
+
+class TestMainPage2():
+
+    def setup_method(self):
+        print(f"start browser for test {self.__class__}..")
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        self.browser = webdriver.Chrome(options=chrome_options)
+
+    def teardown_method(self):
+        print(f"quit browser for test {self.__class__}..")
+        self.browser.quit()
+
+    def test_guest_should_see_login_link(self):
+        self.browser.get(link)
+        self.browser.find_element(By.CSS_SELECTOR, "#login_link")
+
+    def test_guest_should_see_basket_link_on_the_main_page(self):
+        self.browser.get(link)
+        self.browser.find_element(By.CSS_SELECTOR, ".basket-mini .btn-group > a")
+
+        
