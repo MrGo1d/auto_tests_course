@@ -1,4 +1,4 @@
 # auto_tests_course
-education rep
+:man_student: education rep
 
 https://stepik.org/course/575/syllabus
